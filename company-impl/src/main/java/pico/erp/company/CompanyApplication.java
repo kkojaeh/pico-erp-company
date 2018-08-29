@@ -14,7 +14,7 @@ import pico.erp.shared.impl.ApplicationImpl;
 
 @Slf4j
 @SpringBootConfigs
-public class Application implements ApplicationStarter {
+public class CompanyApplication implements ApplicationStarter {
 
   public static final String CONFIG_NAME = "company/application";
 
@@ -27,7 +27,7 @@ public class Application implements ApplicationStarter {
   }
 
   public static SpringApplication application() {
-    return new SpringApplicationBuilder(Application.class)
+    return new SpringApplicationBuilder(CompanyApplication.class)
       .properties(DEFAULT_PROPERTIES)
       .web(false)
       .build();

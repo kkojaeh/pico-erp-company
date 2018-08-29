@@ -14,5 +14,7 @@ afterEvaluate {
 
     testRuntimeOnly('com.github.kkojaeh.pico-erp-audit:audit-impl:1.0.0')
 
+    testRuntimeOnly project(':company-test-cfg')
+
   }
 }

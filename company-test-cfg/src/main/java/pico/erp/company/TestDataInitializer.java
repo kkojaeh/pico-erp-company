@@ -14,7 +14,7 @@ import pico.erp.shared.ApplicationInitializer;
 @Transactional
 @Configuration
 @Profile({"!development", "!production"})
-public class DataInitializer implements ApplicationInitializer {
+public class TestDataInitializer implements ApplicationInitializer {
 
   @Autowired
   private CompanyService companyService;
