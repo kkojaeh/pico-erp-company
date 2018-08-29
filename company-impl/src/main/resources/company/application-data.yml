@@ -1,0 +1,50 @@
+data:
+  companies:
+  - id: CUST1
+    name: 고객사1
+    registration-number: "0000000001"
+    representative: 고객 대표자2
+    enabled: true
+    customer: true
+  - id: CUST2
+    name: 고객사2
+    registration-number: "0000000002"
+    representative: 고객 대표자2
+    enabled: true
+    customer: true
+  - id: SUPP1
+    name: 공급사1
+    registration-number: "0000000003"
+    representative: 공급 대표자1
+    enabled: true
+    supplier: true
+  - id: SUPP2
+    name: 공급사2
+    registration-number: "0000000004"
+    representative: 공급 대표자2
+    email: system@kd-ace.co.kr
+    enabled: true
+    supplier: true
+  company-addresses:
+  - id: CUST1-ADDR1
+    company-id: CUST1
+    name: 본사
+    telephone-number: "+821011111111"
+    mobile-phone-number: "+821011111111"
+    address:
+      postal-code: 13496
+      street: 경기도 성남시 분당구 장미로 42
+      detail: 야탑리더스 410호
+    enabled: true
+  company-contacts:
+  - id: CUST1-CONTACT1
+    company-id: CUST1
+    enabled: true
+    contact:
+      name: 부품 담당자
+      email: customer@kd-ace.co.kr
+      telephone-number: "+821011111111"
+      mobile-phone-number: "+821011111111"
+      fax-number: "+821011111111"
+
+
