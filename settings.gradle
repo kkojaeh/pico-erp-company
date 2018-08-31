@@ -1,5 +1,5 @@
 rootProject.name = 'pico-erp-company'
 include 'company-api'
 include 'company-impl'
-include 'company-test-cfg'
+include 'company-test'
 

@@ -12,8 +12,4 @@ dependencies {
 
   compile("com.github.kkojaeh.pico-erp-shared:shared-impl:${sharedVersion}")
 
-  testRuntimeOnly("com.github.kkojaeh.pico-erp-audit:audit-impl:${auditVersion}")
-
-  testRuntimeOnly project(':company-test-cfg')
-
 }
