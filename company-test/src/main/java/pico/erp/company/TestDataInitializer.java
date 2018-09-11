@@ -9,8 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 import pico.erp.company.CompanyRequests.CreateRequest;
+import pico.erp.company.address.CompanyAddressRequests;
+import pico.erp.company.address.CompanyAddressService;
+import pico.erp.company.contact.CompanyContactRequests;
+import pico.erp.company.contact.CompanyContactService;
 import pico.erp.shared.ApplicationInitializer;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Transactional
 @Configuration
 @Profile({"!development", "!production"})
