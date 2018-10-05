@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pico.erp.company.data.CompanyId;
-import pico.erp.company.data.RegistrationNumber;
 import pico.erp.shared.TypeDefinitions;
 
 public interface CompanyRequests {

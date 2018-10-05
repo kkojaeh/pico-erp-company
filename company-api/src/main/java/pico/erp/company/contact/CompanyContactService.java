@@ -3,12 +3,10 @@ package pico.erp.company.contact;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import pico.erp.company.CompanyId;
 import pico.erp.company.contact.CompanyContactRequests.CreateRequest;
 import pico.erp.company.contact.CompanyContactRequests.DeleteRequest;
 import pico.erp.company.contact.CompanyContactRequests.UpdateRequest;
-import pico.erp.company.contact.data.CompanyContactData;
-import pico.erp.company.contact.data.CompanyContactId;
-import pico.erp.company.data.CompanyId;
 
 public interface CompanyContactService {
 

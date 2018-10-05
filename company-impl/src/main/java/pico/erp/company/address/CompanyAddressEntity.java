@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company.address;
 
 
 import java.io.Serializable;
@@ -26,7 +26,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import pico.erp.company.address.data.CompanyAddressId;
+import pico.erp.company.CompanyEntity;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.data.Auditor;

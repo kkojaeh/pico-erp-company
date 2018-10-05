@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company.contact;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -15,9 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.company.contact.CompanyContactQuery;
-import pico.erp.company.contact.data.CompanyContactView;
-import pico.erp.company.data.CompanyId;
+import pico.erp.company.CompanyId;
 import pico.erp.shared.ExtendedLabeledValue;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;

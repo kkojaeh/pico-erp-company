@@ -15,9 +15,6 @@ import pico.erp.company.CompanyExceptions.RegistrationNumberAlreadyExistsExcepti
 import pico.erp.company.CompanyRequests.CreateRequest;
 import pico.erp.company.CompanyRequests.DeleteRequest;
 import pico.erp.company.CompanyRequests.UpdateRequest;
-import pico.erp.company.data.CompanyData;
-import pico.erp.company.data.CompanyId;
-import pico.erp.company.data.RegistrationNumber;
 import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 

@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.Value;
 import pico.erp.company.Company;
-import pico.erp.company.address.data.CompanyAddressId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.event.Event;

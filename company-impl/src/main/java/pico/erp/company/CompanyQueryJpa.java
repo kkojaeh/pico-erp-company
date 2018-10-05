@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -15,8 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.company.CompanyQuery;
-import pico.erp.company.data.CompanyView;
 import pico.erp.shared.ExtendedLabeledValue;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;

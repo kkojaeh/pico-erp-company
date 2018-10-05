@@ -15,7 +15,6 @@ import pico.erp.company.Company;
 import pico.erp.company.contact.CompanyContactMessages.CreateResponse;
 import pico.erp.company.contact.CompanyContactMessages.DeleteResponse;
 import pico.erp.company.contact.CompanyContactMessages.UpdateResponse;
-import pico.erp.company.contact.data.CompanyContactId;
 import pico.erp.shared.data.Contact;
 
 @ToString

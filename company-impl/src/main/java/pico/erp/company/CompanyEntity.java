@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company;
 
 
 import java.io.Serializable;
@@ -10,10 +10,8 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,13 +25,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import pico.erp.company.contact.data.CompanyContactId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
-import pico.erp.shared.data.Contact;
 
-@Entity(name = "CompanyContact")
-@Table(name = "CPN_COMPANY_CONTACT")
+@Entity(name = "Company")
+@Table(name = "CPN_COMPANY", indexes = {
+  @Index(name = "CPN_COMPANY_REGISTRATION_NUMBER_IDX", columnList = "REGISTRATION_NUMBER", unique = true)
+})
 @Data
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -42,7 +40,7 @@ import pico.erp.shared.data.Contact;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyContactEntity implements Serializable {
+public class CompanyEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -50,26 +48,15 @@ public class CompanyContactEntity implements Serializable {
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "ID", length = TypeDefinitions.ID_LENGTH))
   })
-  CompanyContactId id;
+  CompanyId id;
 
-  @ManyToOne
-  @JoinColumn(name = "COMPANY_ID")
-  CompanyEntity company;
+  @Column(length = TypeDefinitions.NAME_LENGTH)
+  String name;
 
-  @Embedded
   @AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME", length = TypeDefinitions.NAME_LENGTH)),
-    @AttributeOverride(name = "email", column = @Column(name = "EMAIL", length =
-      TypeDefinitions.EMAIL_LENGTH * 2)),
-    @AttributeOverride(name = "telephoneNumber", column = @Column(name = "TELEPHONE_NUMBER", length =
-      TypeDefinitions.PHONE_NUMBER_LENGTH * 2)),
-    @AttributeOverride(name = "mobilePhoneNumber", column = @Column(name = "MOBILE_PHONE_NUMBER", length =
-      TypeDefinitions.PHONE_NUMBER_LENGTH * 2)),
-    @AttributeOverride(name = "faxNumber", column = @Column(name = "FAX_NUMBER", length =
-      TypeDefinitions.PHONE_NUMBER_LENGTH * 2))
+    @AttributeOverride(name = "value", column = @Column(name = "REGISTRATION_NUMBER", length = TypeDefinitions.CODE_LENGTH))
   })
-  @NotNull
-  Contact contact;
+  RegistrationNumber registrationNumber;
 
   @Embedded
   @AttributeOverrides({
@@ -93,6 +80,18 @@ public class CompanyContactEntity implements Serializable {
 
   @LastModifiedDate
   OffsetDateTime lastModifiedDate;
+
+  @Column
+  boolean supplier;
+
+  @Column
+  boolean customer;
+
+  @Column
+  boolean outsourcing;
+
+  @Column(length = TypeDefinitions.HUMAN_NAME_LENGTH)
+  String representative;
 
   @Column
   boolean enabled;

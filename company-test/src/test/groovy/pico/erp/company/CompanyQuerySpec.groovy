@@ -6,9 +6,6 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
-import pico.erp.company.data.CompanyId
-import pico.erp.company.data.CompanyView
-import pico.erp.company.data.RegistrationNumber
 import pico.erp.shared.IntegrationConfiguration
 import spock.lang.Specification
 

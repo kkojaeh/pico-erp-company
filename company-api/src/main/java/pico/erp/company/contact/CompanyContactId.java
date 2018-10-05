@@ -1,4 +1,4 @@
-package pico.erp.company.address.data;
+package pico.erp.company.contact;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import pico.erp.shared.TypeDefinitions;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "value")
 @ToString
-public class CompanyAddressId implements Serializable {
+public class CompanyContactId implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -29,8 +29,8 @@ public class CompanyAddressId implements Serializable {
   @NotNull
   private String value;
 
-  public static CompanyAddressId from(@NonNull String value) {
-    return new CompanyAddressId(value);
+  public static CompanyContactId from(@NonNull String value) {
+    return new CompanyContactId(value);
   }
 
 }

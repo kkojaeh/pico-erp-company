@@ -1,4 +1,4 @@
-package pico.erp.company.data;
+package pico.erp.company;
 
 import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;

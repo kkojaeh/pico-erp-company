@@ -3,12 +3,10 @@ package pico.erp.company.address;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import pico.erp.company.CompanyId;
 import pico.erp.company.address.CompanyAddressRequests.CreateRequest;
 import pico.erp.company.address.CompanyAddressRequests.DeleteRequest;
 import pico.erp.company.address.CompanyAddressRequests.UpdateRequest;
-import pico.erp.company.address.data.CompanyAddressData;
-import pico.erp.company.address.data.CompanyAddressId;
-import pico.erp.company.data.CompanyId;
 
 public interface CompanyAddressService {
 

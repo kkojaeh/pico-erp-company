@@ -1,33 +1,30 @@
-package pico.erp.company.address.data;
+package pico.erp.company.contact;
 
 import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pico.erp.company.data.CompanyId;
-import pico.erp.shared.data.Address;
+import pico.erp.company.CompanyId;
+import pico.erp.company.RegistrationNumber;
 import pico.erp.shared.data.Auditor;
+import pico.erp.shared.data.Contact;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class CompanyAddressView {
+public class CompanyContactView {
 
-  CompanyAddressId id;
+  CompanyContactId id;
 
   CompanyId companyId;
 
   String companyName;
 
-  String name;
+  RegistrationNumber registrationNumber;
 
-  String telephoneNumber;
-
-  String mobilePhoneNumber;
-
-  Address address;
+  Contact contact;
 
   boolean enabled;
 
@@ -45,7 +42,7 @@ public class CompanyAddressView {
   @Builder
   public static class Filter {
 
-    String name;
+    String contactName;
 
     CompanyId companyId;
 

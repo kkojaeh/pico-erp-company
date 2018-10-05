@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
-import pico.erp.audit.data.AuditConfiguration;
+import pico.erp.audit.AuditConfiguration;
 import pico.erp.shared.ApplicationStarter;
 import pico.erp.shared.Public;
 import pico.erp.shared.SpringBootConfigs;
@@ -42,14 +42,14 @@ public class CompanyApplication implements ApplicationStarter {
   public AuditConfiguration auditConfiguration() {
     return AuditConfiguration.builder()
       .packageToScan("pico.erp.company")
-      .entity(ROLE.class)
+      .entity(CompanyRoles.class)
       .build();
   }
 
   @Bean
   @Public
   public Role companyManagerRole() {
-    return ROLE.COMPANY_MANAGER;
+    return CompanyRoles.COMPANY_MANAGER;
   }
 
   @Override

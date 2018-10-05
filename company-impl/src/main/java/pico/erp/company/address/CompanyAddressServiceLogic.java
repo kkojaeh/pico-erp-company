@@ -9,15 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.audit.AuditService;
-import pico.erp.company.CompanyMapper;
+import pico.erp.company.CompanyId;
 import pico.erp.company.address.CompanyAddressExceptions.CompanyAddressAlreadyExistsException;
 import pico.erp.company.address.CompanyAddressExceptions.CompanyAddressNotFoundException;
 import pico.erp.company.address.CompanyAddressRequests.CreateRequest;
 import pico.erp.company.address.CompanyAddressRequests.DeleteRequest;
 import pico.erp.company.address.CompanyAddressRequests.UpdateRequest;
-import pico.erp.company.address.data.CompanyAddressData;
-import pico.erp.company.address.data.CompanyAddressId;
-import pico.erp.company.data.CompanyId;
 import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
@@ -39,7 +36,7 @@ public class CompanyAddressServiceLogic implements CompanyAddressService {
   private AuditService auditService;
 
   @Autowired
-  private CompanyMapper mapper;
+  private CompanyAddressMapper mapper;
 
   @Override
   public CompanyAddressData create(CreateRequest request) {

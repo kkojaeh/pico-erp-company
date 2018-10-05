@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company;
 
 import java.util.Optional;
 import lombok.val;
@@ -8,10 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pico.erp.company.Company;
-import pico.erp.company.CompanyRepository;
-import pico.erp.company.data.CompanyId;
-import pico.erp.company.data.RegistrationNumber;
 
 @Repository
 interface CompanyEntityRepository extends CrudRepository<CompanyEntity, CompanyId> {
@@ -26,16 +22,16 @@ interface CompanyEntityRepository extends CrudRepository<CompanyEntity, CompanyI
 public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Autowired
-  private CompanyJpaMapper mapper;
+  private CompanyMapper mapper;
 
   @Autowired
   private CompanyEntityRepository repository;
 
   @Override
   public Company create(Company company) {
-    val entity = mapper.map(company);
+    val entity = mapper.entity(company);
     val created = repository.save(entity);
-    return mapper.map(created);
+    return mapper.domain(created);
   }
 
   @Override
@@ -56,20 +52,20 @@ public class CompanyRepositoryJpa implements CompanyRepository {
   @Override
   public Optional<Company> findBy(CompanyId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::map);
+      .map(mapper::domain);
   }
 
   @Override
   public Optional<Company> findBy(RegistrationNumber registrationNumber) {
     return Optional
       .ofNullable(repository.findBy(registrationNumber))
-      .map(mapper::map);
+      .map(mapper::domain);
   }
 
   @Override
   public void update(Company company) {
     val entity = repository.findOne(company.getId());
-    mapper.pass(mapper.map(company), entity);
+    mapper.pass(mapper.entity(company), entity);
     repository.save(entity);
   }
 

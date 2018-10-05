@@ -3,8 +3,7 @@ package pico.erp.company.address;
 import java.util.Optional;
 import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
-import pico.erp.company.address.data.CompanyAddressId;
-import pico.erp.company.data.CompanyId;
+import pico.erp.company.CompanyId;
 
 public interface CompanyAddressRepository {
 

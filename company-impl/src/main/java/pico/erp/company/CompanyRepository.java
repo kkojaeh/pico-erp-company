@@ -2,8 +2,6 @@ package pico.erp.company;
 
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
-import pico.erp.company.data.CompanyId;
-import pico.erp.company.data.RegistrationNumber;
 
 public interface CompanyRepository {
 

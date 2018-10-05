@@ -1,4 +1,4 @@
-package pico.erp.company.address.data;
+package pico.erp.company.address;
 
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.FieldDefaults;
-import pico.erp.company.data.CompanyId;
+import pico.erp.company.CompanyId;
 import pico.erp.shared.data.Address;
 
 @Data

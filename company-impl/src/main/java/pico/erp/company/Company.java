@@ -17,8 +17,6 @@ import pico.erp.company.CompanyEvents.UpdatedEvent;
 import pico.erp.company.CompanyMessages.CreateResponse;
 import pico.erp.company.CompanyMessages.DeleteResponse;
 import pico.erp.company.CompanyMessages.UpdateResponse;
-import pico.erp.company.data.CompanyId;
-import pico.erp.company.data.RegistrationNumber;
 
 @ToString
 @Getter

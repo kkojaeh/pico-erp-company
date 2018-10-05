@@ -1,4 +1,4 @@
-package pico.erp.company.jpa;
+package pico.erp.company.address;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -9,10 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pico.erp.company.address.CompanyAddress;
-import pico.erp.company.address.CompanyAddressRepository;
-import pico.erp.company.address.data.CompanyAddressId;
-import pico.erp.company.data.CompanyId;
+import pico.erp.company.CompanyId;
 
 @Repository
 interface CompanyAddressEntityRepository extends
@@ -28,16 +25,16 @@ interface CompanyAddressEntityRepository extends
 public class CompanyAddressRepositoryJpa implements CompanyAddressRepository {
 
   @Autowired
-  private CompanyJpaMapper mapper;
+  private CompanyAddressMapper mapper;
 
   @Autowired
   private CompanyAddressEntityRepository repository;
 
   @Override
   public CompanyAddress create(CompanyAddress companyAddress) {
-    val entity = mapper.map(companyAddress);
+    val entity = mapper.entity(companyAddress);
     val created = repository.save(entity);
-    return mapper.map(created);
+    return mapper.domain(created);
   }
 
   @Override
@@ -53,19 +50,19 @@ public class CompanyAddressRepositoryJpa implements CompanyAddressRepository {
   @Override
   public Stream<CompanyAddress> findAllBy(CompanyId companyId) {
     return repository.findAllBy(companyId)
-      .map(mapper::map);
+      .map(mapper::domain);
   }
 
   @Override
   public Optional<CompanyAddress> findBy(CompanyAddressId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::map);
+      .map(mapper::domain);
   }
 
   @Override
   public void update(CompanyAddress companyAddress) {
     val entity = repository.findOne(companyAddress.getId());
-    mapper.pass(mapper.map(companyAddress), entity);
+    mapper.pass(mapper.entity(companyAddress), entity);
     repository.save(entity);
   }
 }

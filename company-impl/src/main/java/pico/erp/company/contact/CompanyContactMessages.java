@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Value;
 import pico.erp.company.Company;
-import pico.erp.company.contact.data.CompanyContactId;
 import pico.erp.shared.data.Contact;
 import pico.erp.shared.event.Event;
 
