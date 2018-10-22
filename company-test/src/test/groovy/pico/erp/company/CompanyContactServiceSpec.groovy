@@ -54,7 +54,6 @@ class CompanyContactServiceSpec extends Specification {
     def company = companyContactService.get(CompanyContactId.from("CUST1-1"))
 
     then:
-    company.id.value == "CUST1-1"
     company.contact.name == "고객 회사 담당자"
   }
 

@@ -61,7 +61,6 @@ class CompanyAddressServiceSpec extends Specification {
     def company = companyAddressService.get(CompanyAddressId.from("CUST1-1"))
 
     then:
-    company.id.value == "CUST1-1"
     company.telephoneNumber == "+821011111111"
     company.mobilePhoneNumber == "+821011111112"
   }
