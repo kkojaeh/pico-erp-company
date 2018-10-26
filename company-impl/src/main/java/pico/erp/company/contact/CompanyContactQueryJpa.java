@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.company.CompanyId;
-import pico.erp.shared.ExtendedLabeledValue;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;
+import pico.erp.shared.QExtendedLabeledValue;
 import pico.erp.shared.data.LabeledValuable;
 import pico.erp.shared.jpa.QueryDslJpaSupport;
 
@@ -40,7 +40,7 @@ public class CompanyContactQueryJpa implements CompanyContactQuery {
   public List<? extends LabeledValuable> asLabels(CompanyId companyId, String keyword,
     long limit) {
     val query = new JPAQuery<LabeledValue>(entityManager);
-    val select = Projections.bean(ExtendedLabeledValue.class,
+    val select = new QExtendedLabeledValue(
       companyContact.id.value.as("value"),
       companyContact.contact.name.as("label"),
       companyContact.company.name.as("subLabel"),
