@@ -15,7 +15,7 @@ import pico.erp.company.CompanyId;
 interface CompanyAddressEntityRepository extends
   CrudRepository<CompanyAddressEntity, CompanyAddressId> {
 
-  @Query("SELECT ca FROM CompanyAddress ca WHERE ca.company.id = :companyId")
+  @Query("SELECT ca FROM CompanyAddress ca WHERE ca.companyId = :companyId")
   Stream<CompanyAddressEntity> findAllBy(@Param("companyId") CompanyId companyId);
 
 }

@@ -10,8 +10,7 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,13 +25,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import pico.erp.company.CompanyEntity;
+import pico.erp.company.CompanyId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.data.Auditor;
 
 @Entity(name = "CompanyAddress")
-@Table(name = "CPN_COMPANY_ADDRESS")
+@Table(name = "CPN_COMPANY_ADDRESS", indexes = {
+  @Index(columnList = "COMPANY_ID")
+})
 @Data
 @EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -54,9 +55,10 @@ public class CompanyAddressEntity implements Serializable {
   @Column(length = TypeDefinitions.NAME_LENGTH)
   String name;
 
-  @ManyToOne
-  @JoinColumn(name = "COMPANY_ID")
-  CompanyEntity company;
+  @AttributeOverrides({
+    @AttributeOverride(name = "value", column = @Column(name = "COMPANY_ID", length = TypeDefinitions.ID_LENGTH))
+  })
+  CompanyId companyId;
 
   @Embedded
   @AttributeOverrides({

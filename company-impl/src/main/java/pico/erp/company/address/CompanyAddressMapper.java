@@ -7,7 +7,6 @@ import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import pico.erp.company.Company;
-import pico.erp.company.CompanyEntity;
 import pico.erp.company.CompanyId;
 import pico.erp.company.CompanyMapper;
 
@@ -21,7 +20,7 @@ public abstract class CompanyAddressMapper {
   public CompanyAddress domain(CompanyAddressEntity entity) {
     return CompanyAddress.builder()
       .id(entity.getId())
-      .company(companyMapper.domain(entity.getCompany()))
+      .company(map(entity.getCompanyId()))
       .name(entity.getName())
       .address(entity.getAddress())
       .telephoneNumber(entity.getTelephoneNumber())
@@ -31,16 +30,13 @@ public abstract class CompanyAddressMapper {
   }
 
   @Mappings({
+    @Mapping(target = "companyId", source = "company.id"),
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
     @Mapping(target = "lastModifiedBy", ignore = true),
     @Mapping(target = "lastModifiedDate", ignore = true)
   })
   public abstract CompanyAddressEntity entity(CompanyAddress companyContact);
-
-  protected CompanyEntity entity(Company company) {
-    return companyMapper.entity(company);
-  }
 
   public abstract CompanyAddressMessages.DeleteRequest map(
     CompanyAddressRequests.DeleteRequest request);

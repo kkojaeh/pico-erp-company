@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.company.CompanyId;
+import pico.erp.company.QCompanyEntity;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;
 import pico.erp.shared.QExtendedLabeledValue;
@@ -30,6 +31,8 @@ public class CompanyAddressQueryJpa implements CompanyAddressQuery {
 
   private final QCompanyAddressEntity companyAddress = QCompanyAddressEntity.companyAddressEntity;
 
+  private final QCompanyEntity company = QCompanyEntity.companyEntity;
+
   @PersistenceContext
   private EntityManager entityManager;
 
@@ -43,16 +46,18 @@ public class CompanyAddressQueryJpa implements CompanyAddressQuery {
     val query = new JPAQuery<LabeledValue>(entityManager);
     val select = new QExtendedLabeledValue(
       companyAddress.id.value.as("value"),
-      companyAddress.company.name.concat(" / ").concat(companyAddress.name).as("label"),
+      company.name.concat(" / ").concat(companyAddress.name).as("label"),
       companyAddress.address.street.concat(" - ").concat(companyAddress.address.detail)
         .as("subLabel"),
       companyAddress.address.postalCode.as("stamp")
     );
     query.select(select);
     query.from(companyAddress);
+    query.join(company)
+      .on(companyAddress.companyId.eq(company.id));
 
     val builder = new BooleanBuilder();
-    builder.and(companyAddress.company.id.eq(companyId));
+    builder.and(companyAddress.companyId.eq(companyId));
     builder
       .and(companyAddress.name.likeIgnoreCase(queryDslJpaSupport.toLikeKeyword("%", keyword, "%")));
     query.where(builder);
@@ -67,8 +72,8 @@ public class CompanyAddressQueryJpa implements CompanyAddressQuery {
     val query = new JPAQuery<CompanyAddressView>(entityManager);
     val select = Projections.bean(CompanyAddressView.class,
       companyAddress.id,
-      companyAddress.company.id.as("companyId"),
-      companyAddress.company.name.as("companyName"),
+      company.id.as("companyId"),
+      company.name.as("companyName"),
       companyAddress.name,
       companyAddress.telephoneNumber,
       companyAddress.mobilePhoneNumber,
@@ -82,12 +87,13 @@ public class CompanyAddressQueryJpa implements CompanyAddressQuery {
 
     query.select(select);
     query.from(companyAddress);
-    query.join(companyAddress.company);
+    query.join(company)
+      .on(companyAddress.companyId.eq(company.id));
 
     val builder = new BooleanBuilder();
 
     if (filter.getCompanyId() != null) {
-      builder.and(companyAddress.company.id.eq(filter.getCompanyId()));
+      builder.and(companyAddress.companyId.eq(filter.getCompanyId()));
     }
 
     if (!isEmpty(filter.getName())) {

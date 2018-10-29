@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.company.CompanyId;
+import pico.erp.company.QCompanyEntity;
 import pico.erp.shared.LabeledValue;
 import pico.erp.shared.Public;
 import pico.erp.shared.QExtendedLabeledValue;
@@ -30,6 +31,8 @@ public class CompanyContactQueryJpa implements CompanyContactQuery {
 
   private final QCompanyContactEntity companyContact = QCompanyContactEntity.companyContactEntity;
 
+  private final QCompanyEntity company = QCompanyEntity.companyEntity;
+
   @PersistenceContext
   private EntityManager entityManager;
 
@@ -43,14 +46,16 @@ public class CompanyContactQueryJpa implements CompanyContactQuery {
     val select = new QExtendedLabeledValue(
       companyContact.id.value.as("value"),
       companyContact.contact.name.as("label"),
-      companyContact.company.name.as("subLabel"),
+      company.name.as("subLabel"),
       companyContact.contact.mobilePhoneNumber.as("stamp")
     );
     query.select(select);
     query.from(companyContact);
+    query.join(company)
+      .on(companyContact.companyId.eq(company.id));
 
     val builder = new BooleanBuilder();
-    builder.and(companyContact.company.id.eq(companyId));
+    builder.and(companyContact.companyId.eq(companyId));
     builder.and(companyContact.contact.name
       .likeIgnoreCase(queryDslJpaSupport.toLikeKeyword("%", keyword, "%")));
     query.where(builder);
@@ -64,8 +69,8 @@ public class CompanyContactQueryJpa implements CompanyContactQuery {
     val query = new JPAQuery<CompanyContactView>(entityManager);
     val select = Projections.bean(CompanyContactView.class,
       companyContact.id,
-      companyContact.company.id.as("companyId"),
-      companyContact.company.name.as("companyName"),
+      company.id.as("companyId"),
+      company.name.as("companyName"),
       companyContact.contact,
       companyContact.enabled,
       companyContact.createdBy,
@@ -76,12 +81,13 @@ public class CompanyContactQueryJpa implements CompanyContactQuery {
 
     query.select(select);
     query.from(companyContact);
-    query.join(companyContact.company);
+    query.join(company)
+      .on(companyContact.companyId.eq(company.id));
 
     val builder = new BooleanBuilder();
 
     if (filter.getCompanyId() != null) {
-      builder.and(companyContact.company.id.eq(filter.getCompanyId()));
+      builder.and(companyContact.companyId.eq(filter.getCompanyId()));
     }
 
     if (!isEmpty(filter.getContactName())) {

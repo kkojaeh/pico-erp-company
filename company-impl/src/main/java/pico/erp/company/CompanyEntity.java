@@ -30,7 +30,7 @@ import pico.erp.shared.data.Auditor;
 
 @Entity(name = "Company")
 @Table(name = "CPN_COMPANY", indexes = {
-  @Index(name = "CPN_COMPANY_REGISTRATION_NUMBER_IDX", columnList = "REGISTRATION_NUMBER", unique = true)
+  @Index(columnList = "REGISTRATION_NUMBER", unique = true)
 })
 @Data
 @EqualsAndHashCode(of = "id")
