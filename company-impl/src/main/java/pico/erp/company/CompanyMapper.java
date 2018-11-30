@@ -34,6 +34,7 @@ public abstract class CompanyMapper {
       .registrationNumber(entity.getRegistrationNumber())
       .supplier(entity.isSupplier())
       .customer(entity.isCustomer())
+      .outsourcing(entity.isOutsourcing())
       .representative(entity.getRepresentative())
       .enabled(entity.isEnabled())
       .build();

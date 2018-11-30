@@ -11,12 +11,6 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
-import pico.erp.company.CompanyEvents.CreatedEvent;
-import pico.erp.company.CompanyEvents.DeletedEvent;
-import pico.erp.company.CompanyEvents.UpdatedEvent;
-import pico.erp.company.CompanyMessages.CreateResponse;
-import pico.erp.company.CompanyMessages.DeleteResponse;
-import pico.erp.company.CompanyMessages.UpdateResponse;
 
 @ToString
 @Getter
@@ -49,34 +43,36 @@ public class Company implements Serializable {
   public Company() {
   }
 
-  public CreateResponse apply(CompanyMessages.CreateRequest request) {
+  public CompanyMessages.CreateResponse apply(CompanyMessages.CreateRequest request) {
     id = request.getId();
     name = request.getName();
     registrationNumber = request.getRegistrationNumber();
     supplier = request.isSupplier();
     customer = request.isCustomer();
+    outsourcing = request.isOutsourcing();
     representative = request.getRepresentative();
     enabled = request.isEnabled();
-    return new CreateResponse(
-      Arrays.asList(new CreatedEvent(this.id))
+    return new CompanyMessages.CreateResponse(
+      Arrays.asList(new CompanyEvents.CreatedEvent(this.id))
     );
   }
 
-  public UpdateResponse apply(CompanyMessages.UpdateRequest request) {
+  public CompanyMessages.UpdateResponse apply(CompanyMessages.UpdateRequest request) {
     name = request.getName();
     registrationNumber = request.getRegistrationNumber();
     supplier = request.isSupplier();
     customer = request.isCustomer();
+    outsourcing = request.isOutsourcing();
     representative = request.getRepresentative();
     enabled = request.isEnabled();
-    return new UpdateResponse(
-      Arrays.asList(new UpdatedEvent(this.id))
+    return new CompanyMessages.UpdateResponse(
+      Arrays.asList(new CompanyEvents.UpdatedEvent(this.id))
     );
   }
 
-  public DeleteResponse apply(CompanyMessages.DeleteRequest request) {
-    return new DeleteResponse(
-      Arrays.asList(new DeletedEvent(this.id))
+  public CompanyMessages.DeleteResponse apply(CompanyMessages.DeleteRequest request) {
+    return new CompanyMessages.DeleteResponse(
+      Arrays.asList(new CompanyEvents.DeletedEvent(this.id))
     );
   }
 
