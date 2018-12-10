@@ -25,6 +25,13 @@ data:
     email: system@kd-ace.co.kr
     enabled: true
     supplier: true
+  - id: CLI0
+    name: (주)클리*
+    registration-number: "2118623456"
+    representative: 한**
+    email: system@kd-ace.co.kr
+    enabled: true
+    customer: true
   company-addresses:
   - id: CUST1-ADDR1
     company-id: CUST1
