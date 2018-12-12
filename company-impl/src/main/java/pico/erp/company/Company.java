@@ -2,6 +2,7 @@ package pico.erp.company;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collections;
 import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -73,6 +74,12 @@ public class Company implements Serializable {
   public CompanyMessages.DeleteResponse apply(CompanyMessages.DeleteRequest request) {
     return new CompanyMessages.DeleteResponse(
       Arrays.asList(new CompanyEvents.DeletedEvent(this.id))
+    );
+  }
+
+  public CompanyMessages.PrepareImportResponse apply(CompanyMessages.PrepareImportRequest request) {
+    return new CompanyMessages.PrepareImportResponse(
+      Collections.emptyList()
     );
   }
 

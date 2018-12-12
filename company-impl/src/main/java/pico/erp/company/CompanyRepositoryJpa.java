@@ -1,6 +1,8 @@
 package pico.erp.company;
 
 import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -29,9 +31,9 @@ public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Override
   public Company create(Company company) {
-    val entity = mapper.entity(company);
+    val entity = mapper.jpa(company);
     val created = repository.save(entity);
-    return mapper.domain(created);
+    return mapper.jpa(created);
   }
 
   @Override
@@ -52,20 +54,27 @@ public class CompanyRepositoryJpa implements CompanyRepository {
   @Override
   public Optional<Company> findBy(CompanyId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::domain);
+      .map(mapper::jpa);
   }
 
   @Override
   public Optional<Company> findBy(RegistrationNumber registrationNumber) {
     return Optional
       .ofNullable(repository.findBy(registrationNumber))
-      .map(mapper::domain);
+      .map(mapper::jpa);
+  }
+
+  @Override
+  public Stream<Company> getAll() {
+    return StreamSupport.stream(
+      repository.findAll().spliterator(), false
+    ).map(mapper::jpa);
   }
 
   @Override
   public void update(Company company) {
     val entity = repository.findOne(company.getId());
-    mapper.pass(mapper.entity(company), entity);
+    mapper.pass(mapper.jpa(company), entity);
     repository.save(entity);
   }
 

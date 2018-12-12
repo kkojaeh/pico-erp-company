@@ -1,6 +1,7 @@
 package pico.erp.company;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
 
 public interface CompanyRepository {
@@ -18,5 +19,7 @@ public interface CompanyRepository {
   Optional<Company> findBy(@NotNull RegistrationNumber registrationNumber);
 
   void update(@NotNull Company company);
+
+  Stream<Company> getAll();
 
 }

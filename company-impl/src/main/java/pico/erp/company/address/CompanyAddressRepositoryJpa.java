@@ -2,6 +2,7 @@ package pico.erp.company.address;
 
 import java.util.Optional;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -32,9 +33,9 @@ public class CompanyAddressRepositoryJpa implements CompanyAddressRepository {
 
   @Override
   public CompanyAddress create(CompanyAddress companyAddress) {
-    val entity = mapper.entity(companyAddress);
+    val entity = mapper.jpa(companyAddress);
     val created = repository.save(entity);
-    return mapper.domain(created);
+    return mapper.jpa(created);
   }
 
   @Override
@@ -50,19 +51,26 @@ public class CompanyAddressRepositoryJpa implements CompanyAddressRepository {
   @Override
   public Stream<CompanyAddress> findAllBy(CompanyId companyId) {
     return repository.findAllBy(companyId)
-      .map(mapper::domain);
+      .map(mapper::jpa);
   }
 
   @Override
   public Optional<CompanyAddress> findBy(CompanyAddressId id) {
     return Optional.ofNullable(repository.findOne(id))
-      .map(mapper::domain);
+      .map(mapper::jpa);
+  }
+
+  @Override
+  public Stream<CompanyAddress> getAll() {
+    return StreamSupport.stream(
+      repository.findAll().spliterator(), false
+    ).map(mapper::jpa);
   }
 
   @Override
   public void update(CompanyAddress companyAddress) {
     val entity = repository.findOne(companyAddress.getId());
-    mapper.pass(mapper.entity(companyAddress), entity);
+    mapper.pass(mapper.jpa(companyAddress), entity);
     repository.save(entity);
   }
 }

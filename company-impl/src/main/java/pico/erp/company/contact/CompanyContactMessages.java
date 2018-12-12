@@ -3,7 +3,9 @@ package pico.erp.company.contact;
 import java.util.Collection;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import pico.erp.company.Company;
 import pico.erp.shared.data.Contact;
@@ -63,5 +65,20 @@ public interface CompanyContactMessages {
   class DeleteResponse {
 
     Collection<Event> events;
+  }
+
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Data
+  class PrepareImportRequest {
+
+    CompanyContact previous;
+  }
+
+  @Value
+  class PrepareImportResponse {
+
+    Collection<Event> events;
+
   }
 }

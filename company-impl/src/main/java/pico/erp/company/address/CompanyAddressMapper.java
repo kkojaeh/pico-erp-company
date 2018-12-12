@@ -17,7 +17,7 @@ public abstract class CompanyAddressMapper {
   @Autowired
   protected CompanyMapper companyMapper;
 
-  public CompanyAddress domain(CompanyAddressEntity entity) {
+  public CompanyAddress jpa(CompanyAddressEntity entity) {
     return CompanyAddress.builder()
       .id(entity.getId())
       .company(map(entity.getCompanyId()))
@@ -36,7 +36,7 @@ public abstract class CompanyAddressMapper {
     @Mapping(target = "lastModifiedBy", ignore = true),
     @Mapping(target = "lastModifiedDate", ignore = true)
   })
-  public abstract CompanyAddressEntity entity(CompanyAddress companyContact);
+  public abstract CompanyAddressEntity jpa(CompanyAddress companyContact);
 
   public abstract CompanyAddressMessages.DeleteRequest map(
     CompanyAddressRequests.DeleteRequest request);

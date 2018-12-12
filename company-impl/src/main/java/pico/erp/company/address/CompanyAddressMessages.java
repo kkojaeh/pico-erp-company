@@ -4,7 +4,9 @@ import java.util.Collection;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import pico.erp.company.Company;
 import pico.erp.shared.TypeDefinitions;
@@ -85,5 +87,20 @@ public interface CompanyAddressMessages {
   class DeleteResponse {
 
     Collection<Event> events;
+  }
+
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Data
+  class PrepareImportRequest {
+
+    CompanyAddress previous;
+  }
+
+  @Value
+  class PrepareImportResponse {
+
+    Collection<Event> events;
+
   }
 }

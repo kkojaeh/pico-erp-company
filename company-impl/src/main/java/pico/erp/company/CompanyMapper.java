@@ -27,7 +27,7 @@ public abstract class CompanyMapper {
 
   public abstract CompanyMessages.DeleteRequest map(DeleteRequest request);
 
-  public Company domain(CompanyEntity entity) {
+  public Company jpa(CompanyEntity entity) {
     return Company.builder()
       .id(entity.getId())
       .name(entity.getName())
@@ -46,7 +46,7 @@ public abstract class CompanyMapper {
     @Mapping(target = "lastModifiedBy", ignore = true),
     @Mapping(target = "lastModifiedDate", ignore = true)
   })
-  public abstract CompanyEntity entity(Company company);
+  public abstract CompanyEntity jpa(Company company);
 
   public Company map(CompanyId companyId) {
     return Optional.ofNullable(companyId)

@@ -12,9 +12,6 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.company.Company;
-import pico.erp.company.address.CompanyAddressMessages.CreateResponse;
-import pico.erp.company.address.CompanyAddressMessages.DeleteResponse;
-import pico.erp.company.address.CompanyAddressMessages.UpdateResponse;
 import pico.erp.shared.data.Address;
 
 @ToString
@@ -46,7 +43,7 @@ public class CompanyAddress implements Serializable {
   public CompanyAddress() {
   }
 
-  public CreateResponse apply(
+  public CompanyAddressMessages.CreateResponse apply(
     CompanyAddressMessages.CreateRequest request) {
     id = request.getId();
     company = request.getCompany();
@@ -55,26 +52,33 @@ public class CompanyAddress implements Serializable {
     mobilePhoneNumber = request.getMobilePhoneNumber();
     enabled = request.isEnabled();
     address = request.getAddress();
-    return new CreateResponse(
+    return new CompanyAddressMessages.CreateResponse(
       Collections.emptyList()
     );
   }
 
-  public UpdateResponse apply(
+  public CompanyAddressMessages.UpdateResponse apply(
     CompanyAddressMessages.UpdateRequest request) {
     name = request.getName();
     telephoneNumber = request.getTelephoneNumber();
     mobilePhoneNumber = request.getMobilePhoneNumber();
     enabled = request.isEnabled();
     address = request.getAddress();
-    return new UpdateResponse(
+    return new CompanyAddressMessages.UpdateResponse(
       Collections.emptyList()
     );
   }
 
-  public DeleteResponse apply(
+  public CompanyAddressMessages.DeleteResponse apply(
     CompanyAddressMessages.DeleteRequest request) {
-    return new DeleteResponse(
+    return new CompanyAddressMessages.DeleteResponse(
+      Collections.emptyList()
+    );
+  }
+
+  public CompanyAddressMessages.PrepareImportResponse apply(
+    CompanyAddressMessages.PrepareImportRequest request) {
+    return new CompanyAddressMessages.PrepareImportResponse(
       Collections.emptyList()
     );
   }

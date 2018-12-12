@@ -12,9 +12,6 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.company.Company;
-import pico.erp.company.contact.CompanyContactMessages.CreateResponse;
-import pico.erp.company.contact.CompanyContactMessages.DeleteResponse;
-import pico.erp.company.contact.CompanyContactMessages.UpdateResponse;
 import pico.erp.shared.data.Contact;
 
 @ToString
@@ -40,29 +37,36 @@ public class CompanyContact implements Serializable {
   public CompanyContact() {
   }
 
-  public CreateResponse apply(
+  public CompanyContactMessages.CreateResponse apply(
     CompanyContactMessages.CreateRequest request) {
     id = request.getId();
     company = request.getCompany();
     contact = request.getContact();
     enabled = request.isEnabled();
-    return new CreateResponse(
+    return new CompanyContactMessages.CreateResponse(
       Collections.emptyList()
     );
   }
 
-  public UpdateResponse apply(
+  public CompanyContactMessages.UpdateResponse apply(
     CompanyContactMessages.UpdateRequest request) {
     contact = request.getContact();
     enabled = request.isEnabled();
-    return new UpdateResponse(
+    return new CompanyContactMessages.UpdateResponse(
       Collections.emptyList()
     );
   }
 
-  public DeleteResponse apply(
+  public CompanyContactMessages.DeleteResponse apply(
     CompanyContactMessages.DeleteRequest request) {
-    return new DeleteResponse(
+    return new CompanyContactMessages.DeleteResponse(
+      Collections.emptyList()
+    );
+  }
+
+  public CompanyContactMessages.PrepareImportResponse apply(
+    CompanyContactMessages.PrepareImportRequest request) {
+    return new CompanyContactMessages.PrepareImportResponse(
       Collections.emptyList()
     );
   }

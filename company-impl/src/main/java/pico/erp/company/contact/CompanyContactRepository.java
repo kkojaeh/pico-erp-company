@@ -19,4 +19,6 @@ public interface CompanyContactRepository {
 
   void update(@NotNull CompanyContact companyContact);
 
+  Stream<CompanyContact> getAll();
+
 }
