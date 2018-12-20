@@ -1,11 +1,17 @@
 package pico.erp.company;
 
 import java.util.Properties;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
+import pico.erp.audit.AuditApi;
 import pico.erp.audit.AuditConfiguration;
+import pico.erp.company.CompanyApi.Roles;
+import pico.erp.shared.ApplicationId;
 import pico.erp.shared.ApplicationStarter;
 import pico.erp.shared.Public;
 import pico.erp.shared.SpringBootConfigs;
@@ -42,19 +48,24 @@ public class CompanyApplication implements ApplicationStarter {
   public AuditConfiguration auditConfiguration() {
     return AuditConfiguration.builder()
       .packageToScan("pico.erp.company")
-      .entity(CompanyRoles.class)
+      .entity(Roles.class)
       .build();
   }
 
   @Bean
   @Public
   public Role companyManagerRole() {
-    return CompanyRoles.COMPANY_MANAGER;
+    return Roles.COMPANY_MANAGER;
   }
 
   @Override
-  public int getOrder() {
-    return 2;
+  public Set<ApplicationId> getDependencies() {
+    return Stream.of(AuditApi.ID).collect(Collectors.toSet());
+  }
+
+  @Override
+  public ApplicationId getId() {
+    return CompanyApi.ID;
   }
 
   @Override
