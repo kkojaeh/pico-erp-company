@@ -31,6 +31,8 @@ public class CompanyAddressView {
 
   boolean enabled;
 
+  boolean represented;
+
   Auditor createdBy;
 
   OffsetDateTime createdDate;

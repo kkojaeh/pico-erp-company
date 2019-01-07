@@ -34,11 +34,13 @@ public class CompanyAddress implements Serializable {
 
   String telephoneNumber;
 
-  String mobilePhoneNumber;
+  String faxNumber;
 
   boolean enabled;
 
   Address address;
+
+  boolean represented;
 
   public CompanyAddress() {
   }
@@ -49,9 +51,10 @@ public class CompanyAddress implements Serializable {
     company = request.getCompany();
     name = request.getName();
     telephoneNumber = request.getTelephoneNumber();
-    mobilePhoneNumber = request.getMobilePhoneNumber();
+    faxNumber = request.getFaxNumber();
     enabled = request.isEnabled();
     address = request.getAddress();
+    represented = request.isRepresented();
     return new CompanyAddressMessages.CreateResponse(
       Collections.emptyList()
     );
@@ -61,9 +64,10 @@ public class CompanyAddress implements Serializable {
     CompanyAddressMessages.UpdateRequest request) {
     name = request.getName();
     telephoneNumber = request.getTelephoneNumber();
-    mobilePhoneNumber = request.getMobilePhoneNumber();
+    faxNumber = request.getFaxNumber();
     enabled = request.isEnabled();
     address = request.getAddress();
+    represented = request.isRepresented();
     return new CompanyAddressMessages.UpdateResponse(
       Collections.emptyList()
     );

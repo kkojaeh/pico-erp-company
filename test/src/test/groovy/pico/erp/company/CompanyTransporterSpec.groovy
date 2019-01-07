@@ -72,7 +72,7 @@ class CompanyTransporterSpec extends Specification {
     created.representative == "테스트 대표자2"
     createdAddress.companyId == CompanyId.from("NEW")
     createdAddress.name == "테스트"
-    createdAddress.mobilePhoneNumber == "+821011111113"
+    createdAddress.faxNumber == "+821011111113"
     createdAddress.telephoneNumber == "+821011111112"
     createdAddress.address.postalCode == "13497"
     createdAddress.address.street == "경기도 성남시 분당구 장미로 43"

@@ -25,10 +25,11 @@ public class CompanyAddressData implements Serializable {
 
   String telephoneNumber;
 
-  String mobilePhoneNumber;
-
+  String faxNumber;
 
   Address address;
+
+  boolean represented;
 
   boolean enabled;
 

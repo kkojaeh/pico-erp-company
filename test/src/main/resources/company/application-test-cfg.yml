@@ -37,12 +37,13 @@ data:
     company-id: CUST1
     name: 본사
     telephone-number: "+821011111111"
-    mobile-phone-number: "+821011111111"
+    fax-number: "+821011111111"
     address:
       postal-code: 13496
       street: 경기도 성남시 분당구 장미로 42
       detail: 야탑리더스 410호
     enabled: true
+    represented: true
   company-contacts:
   - id: CUST1-CONTACT1
     company-id: CUST1

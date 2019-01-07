@@ -24,8 +24,9 @@ public abstract class CompanyAddressMapper {
       .name(entity.getName())
       .address(entity.getAddress())
       .telephoneNumber(entity.getTelephoneNumber())
-      .mobilePhoneNumber(entity.getMobilePhoneNumber())
+      .faxNumber(entity.getFaxNumber())
       .enabled(entity.isEnabled())
+      .represented(entity.isRepresented())
       .build();
   }
 
@@ -36,7 +37,7 @@ public abstract class CompanyAddressMapper {
     @Mapping(target = "lastModifiedBy", ignore = true),
     @Mapping(target = "lastModifiedDate", ignore = true)
   })
-  public abstract CompanyAddressEntity jpa(CompanyAddress companyContact);
+  public abstract CompanyAddressEntity jpa(CompanyAddress domain);
 
   public abstract CompanyAddressMessages.DeleteRequest map(
     CompanyAddressRequests.DeleteRequest request);
@@ -44,7 +45,7 @@ public abstract class CompanyAddressMapper {
   @Mappings({
     @Mapping(target = "companyId", source = "company.id")
   })
-  public abstract CompanyAddressData map(CompanyAddress companyAddress);
+  public abstract CompanyAddressData map(CompanyAddress domain);
 
   @Mappings({
     @Mapping(target = "company", source = "companyId")

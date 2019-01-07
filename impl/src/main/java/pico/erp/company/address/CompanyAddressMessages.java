@@ -34,13 +34,15 @@ public interface CompanyAddressMessages {
     String telephoneNumber;
 
     @Size(max = TypeDefinitions.PHONE_NUMBER_LENGTH)
-    String mobilePhoneNumber;
+    String faxNumber;
 
     @Valid
     @NotNull
     Address address;
 
     boolean enabled;
+
+    boolean represented;
   }
 
   @Data
@@ -54,13 +56,15 @@ public interface CompanyAddressMessages {
     String telephoneNumber;
 
     @Size(max = TypeDefinitions.PHONE_NUMBER_LENGTH)
-    String mobilePhoneNumber;
+    String faxNumber;
 
     @Valid
     @NotNull
     Address address;
 
     boolean enabled;
+
+    boolean represented;
 
   }
 

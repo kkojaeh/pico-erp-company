@@ -91,11 +91,12 @@ public class CompanyTransporterImpl implements CompanyTransporter {
           .add("companyId", e -> e.getCompany().getId().getValue())
           .add("name", e -> e.getName())
           .add("telephoneNumber", e -> e.getTelephoneNumber())
-          .add("mobilePhoneNumber", e -> e.getMobilePhoneNumber())
+          .add("faxNumber", e -> e.getFaxNumber())
           .add("address[postalCode]", e -> e.getAddress().getPostalCode())
           .add("address[street]", e -> e.getAddress().getStreet())
           .add("address[detail]", e -> e.getAddress().getDetail())
           .add("enabled", e -> e.isEnabled() + "")
+          .add("represented", e -> e.isRepresented() + "")
       )
       .asExcel(
         ExportExcelConfig.fromWorkbook(workbook).build("company-addresses")
@@ -178,8 +179,9 @@ public class CompanyTransporterImpl implements CompanyTransporter {
         .company(companyMapper.map(CompanyId.from(row.cell("companyId").asString())))
         .name(row.cell("name").asString())
         .telephoneNumber(row.cell("telephoneNumber").asString())
-        .mobilePhoneNumber(row.cell("mobilePhoneNumber").asString())
+        .faxNumber(row.cell("faxNumber").asString())
         .enabled(Boolean.valueOf(row.cell("enabled").asString()))
+        .represented(Boolean.valueOf(row.cell("represented").asString()))
         .address(
           new Address(
             row.cell("address[postalCode]").asString(),

@@ -32,7 +32,7 @@ class CompanyAddressServiceSpec extends Specification {
 
   def telephoneNumber = "+821011111111"
 
-  def mobilePhoneNumber = "+821011111112"
+  def faxNumber = "+821011111112"
 
   def address = new Address(
     postalCode: '13496',
@@ -47,9 +47,10 @@ class CompanyAddressServiceSpec extends Specification {
         companyId: companyId,
         name: name,
         telephoneNumber: telephoneNumber,
-        mobilePhoneNumber: mobilePhoneNumber,
+        faxNumber: faxNumber,
         address: address,
-        enabled: true
+        enabled: true,
+        represented: true
       )
     )
   }
@@ -79,11 +80,12 @@ class CompanyAddressServiceSpec extends Specification {
     companyAddress.companyId == companyId
     companyAddress.name == name
     companyAddress.telephoneNumber == telephoneNumber
-    companyAddress.mobilePhoneNumber == mobilePhoneNumber
+    companyAddress.faxNumber == faxNumber
     companyAddress.address.postalCode == address.postalCode
     companyAddress.address.street == address.street
     companyAddress.address.detail == address.detail
     companyAddress.enabled == true
+    companyAddress.represented == true
   }
 
   def "조회 - 존재하지 않는 아이디로 조회"() {
@@ -109,9 +111,10 @@ class CompanyAddressServiceSpec extends Specification {
         id: id,
         name: name,
         telephoneNumber: telephoneNumber,
-        mobilePhoneNumber: mobilePhoneNumber,
+        faxNumber: faxNumber,
         address: address,
-        enabled: true
+        enabled: true,
+        represented: false
       )
     )
     def companyAddress = companyAddressService.get(id)
@@ -120,11 +123,12 @@ class CompanyAddressServiceSpec extends Specification {
     companyAddress.companyId == companyId
     companyAddress.name == name
     companyAddress.telephoneNumber == telephoneNumber
-    companyAddress.mobilePhoneNumber == mobilePhoneNumber
+    companyAddress.faxNumber == faxNumber
     companyAddress.address.postalCode == address.postalCode
     companyAddress.address.street == address.street
     companyAddress.address.detail == address.detail
     companyAddress.enabled == true
+    companyAddress.represented == false
   }
 
 

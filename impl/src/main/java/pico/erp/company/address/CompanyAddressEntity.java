@@ -95,9 +95,12 @@ public class CompanyAddressEntity implements Serializable {
   String telephoneNumber;
 
   @Column(length = TypeDefinitions.PHONE_NUMBER_LENGTH)
-  String mobilePhoneNumber;
+  String faxNumber;
 
   @Column
   boolean enabled;
+
+  @Column
+  boolean represented;
 
 }

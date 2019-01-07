@@ -35,13 +35,15 @@ public interface CompanyAddressRequests {
     String telephoneNumber;
 
     @Size(max = TypeDefinitions.PHONE_NUMBER_LENGTH)
-    String mobilePhoneNumber;
+    String faxNumber;
 
     @Valid
     @NotNull
     Address address;
 
     boolean enabled;
+
+    boolean represented;
 
   }
 
@@ -63,13 +65,15 @@ public interface CompanyAddressRequests {
     String telephoneNumber;
 
     @Size(max = TypeDefinitions.PHONE_NUMBER_LENGTH)
-    String mobilePhoneNumber;
+    String faxNumber;
 
     @Valid
     @NotNull
     Address address;
 
     boolean enabled;
+
+    boolean represented;
 
   }
 
