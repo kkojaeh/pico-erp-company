@@ -94,14 +94,18 @@ owner:
   name: ${COMPANY_OWNER_NAME:내회사}
   registrationNumber: ${COMPANY_OWNER_REGISTRATION_NUMBER:0000000000}
   representative: ${COMPANY_OWNER_REPRESENTATIVE:대표자}
-  telephoneNumber: ${COMPANY_OWNER_TELEPHONE_NUMBER:+821011111111}
-  mobilePhoneNumber: ${COMPANY_OWNER_MOBILE_PHONE_NUMBER:+821011111111}
-  faxNumber: ${COMPANY_OWNER_FAX_NUMBER:+821011111111}
-  email: ${COMPANY_OWNER_EMAIL:system@kd-ace.co.kr}
   enabled: true
   address:
-    postalCode: ${COMPANY_OWNER_ADDRESS_POSTAL_CODE:13496}
-    street: ${COMPANY_OWNER_ADDRESS_STREET:경기도 성남시 분당구 장미로 42}
-    detail: ${COMPANY_OWNER_ADDRESS_DETAIL:야탑리더스 410호}
+    id: company-owner-address
+    company-id: ${COMPANY_OWNER_ID:OWNER}
+    name: 분당사무실
+    telephoneNumber: ${COMPANY_OWNER_TELEPHONE_NUMBER:+821011111111}
+    faxNumber: ${COMPANY_OWNER_FAX_NUMBER:+821011111111}
+    enabled: true
+    represented: true
+    address:
+      postalCode: ${COMPANY_OWNER_ADDRESS_POSTAL_CODE:13496}
+      street: ${COMPANY_OWNER_ADDRESS_STREET:경기도 성남시 분당구 장미로 42}
+      detail: ${COMPANY_OWNER_ADDRESS_DETAIL:야탑리더스 410호}
 
 
