@@ -29,6 +29,10 @@ public class CompanyView {
 
   String representative;
 
+  String conditionDescription;
+
+  String itemDescription;
+
   Auditor createdBy;
 
   OffsetDateTime createdDate;

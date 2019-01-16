@@ -66,6 +66,8 @@ public class CompanyQueryJpa implements CompanyQuery {
       company.customer,
       company.outsourcing,
       company.representative,
+      company.conditionDescription,
+      company.itemDescription,
       company.createdBy,
       company.createdDate,
       company.lastModifiedBy,

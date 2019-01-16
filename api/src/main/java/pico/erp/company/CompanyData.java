@@ -21,6 +21,10 @@ public class CompanyData implements Serializable {
 
   RegistrationNumber registrationNumber;
 
+  String conditionDescription;
+
+  String itemDescription;
+
   boolean supplier;
 
   boolean customer;

@@ -30,6 +30,12 @@ public interface CompanyMessages {
     @Size(max = TypeDefinitions.HUMAN_NAME_LENGTH)
     String representative;
 
+    @Size(max = TypeDefinitions.REMARK_LENGTH)
+    String conditionDescription;
+
+    @Size(max = TypeDefinitions.REMARK_LENGTH)
+    String itemDescription;
+
     boolean supplier;
 
     boolean customer;
@@ -52,6 +58,12 @@ public interface CompanyMessages {
 
     @Size(max = TypeDefinitions.HUMAN_NAME_LENGTH)
     String representative;
+
+    @Size(max = TypeDefinitions.REMARK_LENGTH)
+    String conditionDescription;
+
+    @Size(max = TypeDefinitions.REMARK_LENGTH)
+    String itemDescription;
 
     boolean supplier;
 

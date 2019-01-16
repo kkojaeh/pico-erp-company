@@ -31,6 +31,10 @@ public class Company implements Serializable {
 
   RegistrationNumber registrationNumber;
 
+  String conditionDescription;
+
+  String itemDescription;
+
   boolean supplier;
 
   boolean customer;
@@ -52,6 +56,8 @@ public class Company implements Serializable {
     customer = request.isCustomer();
     outsourcing = request.isOutsourcing();
     representative = request.getRepresentative();
+    conditionDescription = request.getConditionDescription();
+    itemDescription = request.getItemDescription();
     enabled = request.isEnabled();
     return new CompanyMessages.CreateResponse(
       Arrays.asList(new CompanyEvents.CreatedEvent(this.id))
@@ -65,6 +71,8 @@ public class Company implements Serializable {
     customer = request.isCustomer();
     outsourcing = request.isOutsourcing();
     representative = request.getRepresentative();
+    conditionDescription = request.getConditionDescription();
+    itemDescription = request.getItemDescription();
     enabled = request.isEnabled();
     return new CompanyMessages.UpdateResponse(
       Arrays.asList(new CompanyEvents.UpdatedEvent(this.id))

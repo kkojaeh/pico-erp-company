@@ -58,6 +58,12 @@ public class CompanyEntity implements Serializable {
   })
   RegistrationNumber registrationNumber;
 
+  @Column(length = TypeDefinitions.REMARK_LENGTH)
+  String conditionDescription;
+
+  @Column(length = TypeDefinitions.REMARK_LENGTH)
+  String itemDescription;
+
   @Embedded
   @AttributeOverrides({
     @AttributeOverride(name = "id", column = @Column(name = "CREATED_BY_ID", updatable = false, length = TypeDefinitions.ID_LENGTH)),

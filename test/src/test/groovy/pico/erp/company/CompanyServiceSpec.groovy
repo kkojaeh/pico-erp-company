@@ -29,6 +29,10 @@ class CompanyServiceSpec extends Specification {
 
   def representative = "대표자"
 
+  def conditionDescription = "제조"
+
+  def itemDescription = "금형,알미늄,합성수지,포장재"
+
   def setup() {
     companyService.create(
       new CompanyRequests.CreateRequest(
@@ -39,7 +43,9 @@ class CompanyServiceSpec extends Specification {
         supplier: false,
         customer: true,
         outsourcing: false,
-        enabled: true
+        enabled: true,
+        conditionDescription: conditionDescription,
+        itemDescription: itemDescription
       )
     )
   }
@@ -90,6 +96,8 @@ class CompanyServiceSpec extends Specification {
     company.customer == true
     company.outsourcing == false
     company.enabled == true
+    company.conditionDescription == conditionDescription
+    company.itemDescription == itemDescription
   }
 
   def "조회 - 존재하지 않는 아이디로 조회"() {
