@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
@@ -68,7 +69,9 @@ public class CompanyTransporterImpl implements CompanyTransporter {
         new ExportHeaderMapping<Company>()
           .add("id", e -> e.getId().getValue())
           .add("name", e -> e.getName())
-          .add("registrationNumber", e -> e.getRegistrationNumber().getValue())
+          .add("registrationNumber",
+            e -> Optional.ofNullable(e.getRegistrationNumber()).map(no -> no.getValue())
+              .orElse(null))
           .add("representative", e -> e.getRepresentative())
           .add("conditionDescription", e -> e.getConditionDescription())
           .add("itemDescription", e -> e.getItemDescription())
@@ -154,7 +157,11 @@ public class CompanyTransporterImpl implements CompanyTransporter {
       .map(row -> Company.builder()
         .id(CompanyId.from(row.cell("id").asString()))
         .name(row.cell("name").asString())
-        .registrationNumber(RegistrationNumber.from(row.cell("registrationNumber").asString()))
+        .registrationNumber(
+          Optional.ofNullable(row.cell("registrationNumber").asString())
+            .map(value -> RegistrationNumber.from(value))
+            .orElse(null)
+        )
         .representative(row.cell("representative").asString())
         .conditionDescription(row.cell("conditionDescription").asString())
         .itemDescription(row.cell("itemDescription").asString())
