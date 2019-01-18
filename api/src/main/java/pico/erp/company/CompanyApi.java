@@ -13,7 +13,9 @@ public final class CompanyApi {
   @RequiredArgsConstructor
   public enum Roles implements Role {
 
-    COMPANY_MANAGER;
+    COMPANY_MANAGER,
+
+    COMPANY_ACCESSOR;
 
     @Id
     @Getter

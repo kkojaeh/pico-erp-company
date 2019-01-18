@@ -58,6 +58,12 @@ public class CompanyApplication implements ApplicationStarter {
     return Roles.COMPANY_MANAGER;
   }
 
+  @Bean
+  @Public
+  public Role companyAccessorRole() {
+    return Roles.COMPANY_ACCESSOR;
+  }
+
   @Override
   public Set<ApplicationId> getDependencies() {
     return Stream.of(AuditApi.ID).collect(Collectors.toSet());
