@@ -58,10 +58,10 @@ public class CompanyEntity implements Serializable {
   })
   RegistrationNumber registrationNumber;
 
-  @Column(length = TypeDefinitions.REMARK_LENGTH)
+  @Column(length = TypeDefinitions.DESCRIPTION_LENGTH)
   String conditionDescription;
 
-  @Column(length = TypeDefinitions.REMARK_LENGTH)
+  @Column(length = TypeDefinitions.DESCRIPTION_LENGTH)
   String itemDescription;
 
   @Embedded
