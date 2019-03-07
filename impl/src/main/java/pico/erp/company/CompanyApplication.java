@@ -24,8 +24,6 @@ public class CompanyApplication implements ApplicationStarter {
 
   public static final String CONFIG_NAME = "company/application";
 
-  public static final String CONFIG_NAME_PROPERTY = "spring.config.name=company/application";
-
   public static final Properties DEFAULT_PROPERTIES = new Properties();
 
   static {
