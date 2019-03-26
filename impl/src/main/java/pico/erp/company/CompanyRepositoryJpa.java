@@ -38,12 +38,12 @@ public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Override
   public void deleteBy(CompanyId id) {
-    repository.delete(id);
+    repository.deleteById(id);
   }
 
   @Override
   public boolean exists(CompanyId id) {
-    return repository.exists(id);
+    return repository.existsById(id);
   }
 
   @Override
@@ -53,7 +53,7 @@ public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Override
   public Optional<Company> findBy(CompanyId id) {
-    return Optional.ofNullable(repository.findOne(id))
+    return repository.findById(id)
       .map(mapper::jpa);
   }
 
@@ -73,7 +73,7 @@ public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Override
   public void update(Company company) {
-    val entity = repository.findOne(company.getId());
+    val entity = repository.findById(company.getId()).get();
     mapper.pass(mapper.jpa(company), entity);
     repository.save(entity);
   }

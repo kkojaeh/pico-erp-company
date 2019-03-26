@@ -11,6 +11,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.stream.Stream;
+import kkojaeh.spring.boot.component.Give;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -29,14 +30,13 @@ import pico.erp.company.contact.CompanyContact;
 import pico.erp.company.contact.CompanyContactId;
 import pico.erp.company.contact.CompanyContactMessages;
 import pico.erp.company.contact.CompanyContactRepository;
-import pico.erp.shared.Public;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.data.Contact;
 import pico.erp.shared.data.ContentInputStream;
 import pico.erp.shared.event.EventPublisher;
 
 @Component
-@Public
+@Give
 @Validated
 @Transactional
 public class CompanyTransporterImpl implements CompanyTransporter {

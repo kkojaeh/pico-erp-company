@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import pico.erp.audit.annotation.Audit;
 import pico.erp.company.Company;
 import pico.erp.shared.data.Contact;
 
@@ -20,7 +19,6 @@ import pico.erp.shared.data.Contact;
 @EqualsAndHashCode(of = "id")
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Audit(alias = "company-contact")
 public class CompanyContact implements Serializable {
 
   private static final long serialVersionUID = 1L;

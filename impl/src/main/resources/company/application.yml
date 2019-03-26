@@ -1,7 +1,6 @@
-banner:
-  location: classpath:company/banner.txt
-
 spring:
+  banner:
+    location: classpath:company/banner.txt
   application:
     name: pico-company
   session:
@@ -17,6 +16,8 @@ spring:
     password: ${COMPANY_DATASOURCE_PASSWORD:${DATASOURCE_PASSWORD:null}}
     hikari:
       maximum-pool-size: 4
+  flyway:
+    enabled: false
   jpa:
     database: HSQL
     hibernate:
@@ -83,8 +84,7 @@ logging:
     org:
       springframework: INFO
 
-flyway:
-  enabled: false
+
 
 owner:
   id: ${COMPANY_OWNER_ID:OWNER}

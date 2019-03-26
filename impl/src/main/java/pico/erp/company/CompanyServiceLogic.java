@@ -1,26 +1,24 @@
 package pico.erp.company;
 
 import java.util.Optional;
+import kkojaeh.spring.boot.component.Give;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.audit.AuditService;
 import pico.erp.company.CompanyExceptions.AlreadyExistsException;
 import pico.erp.company.CompanyExceptions.NotFoundException;
 import pico.erp.company.CompanyExceptions.RegistrationNumberAlreadyExistsException;
 import pico.erp.company.CompanyRequests.CreateRequest;
 import pico.erp.company.CompanyRequests.DeleteRequest;
 import pico.erp.company.CompanyRequests.UpdateRequest;
-import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Public
+@Give
 @Transactional
 @Validated
 public class CompanyServiceLogic implements CompanyService {
@@ -30,10 +28,6 @@ public class CompanyServiceLogic implements CompanyService {
 
   @Autowired
   private EventPublisher eventPublisher;
-
-  @Autowired
-  @Lazy
-  private AuditService auditService;
 
   @Autowired
   private CompanyMapper mapper;
@@ -55,7 +49,6 @@ public class CompanyServiceLogic implements CompanyService {
     val company = new Company();
     val response = company.apply(mapper.map(request));
     val created = companyRepository.create(company);
-    auditService.commit(created);
     eventPublisher.publishEvents(response.getEvents());
     return mapper.map(created);
   }
@@ -66,7 +59,6 @@ public class CompanyServiceLogic implements CompanyService {
       .orElseThrow(NotFoundException::new);
     val response = company.apply(mapper.map(request));
     companyRepository.deleteBy(request.getId());
-    auditService.delete(company);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -113,7 +105,6 @@ public class CompanyServiceLogic implements CompanyService {
 
     val response = company.apply(mapper.map(request));
     companyRepository.update(company);
-    auditService.commit(company);
     eventPublisher.publishEvents(response.getEvents());
   }
 }

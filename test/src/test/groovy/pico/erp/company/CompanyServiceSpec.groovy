@@ -1,14 +1,18 @@
 package pico.erp.company
 
+import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
-import pico.erp.shared.IntegrationConfiguration
+import pico.erp.shared.TestParentApplication
 import spock.lang.Specification
 
-@SpringBootTest(classes = [IntegrationConfiguration])
+@SpringBootTest(classes = [CompanyApplication])
+@SpringBootTestComponent(parent = TestParentApplication, siblings = [])
+@ComponentScan(useDefaultFilters = false)
 @Transactional
 @Rollback
 @ActiveProfiles("test")
