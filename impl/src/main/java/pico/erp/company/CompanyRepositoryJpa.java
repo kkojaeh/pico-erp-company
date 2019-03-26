@@ -17,6 +17,9 @@ interface CompanyEntityRepository extends CrudRepository<CompanyEntity, CompanyI
   @Query("SELECT c FROM Company c WHERE c.registrationNumber = :registrationNumber")
   CompanyEntity findBy(@Param("registrationNumber") RegistrationNumber registrationNumber);
 
+  @Query("SELECT CASE WHEN COUNT(c) > 0 THEN true ELSE false END FROM Company c WHERE c.registrationNumber = :registrationNumber")
+  boolean exists(@Param("registrationNumber") RegistrationNumber registrationNumber);
+
 }
 
 @Repository
@@ -48,7 +51,7 @@ public class CompanyRepositoryJpa implements CompanyRepository {
 
   @Override
   public boolean exists(RegistrationNumber registrationNumber) {
-    return repository.findBy(registrationNumber) != null;
+    return repository.exists(registrationNumber);
   }
 
   @Override
