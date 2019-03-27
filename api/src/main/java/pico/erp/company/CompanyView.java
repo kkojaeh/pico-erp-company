@@ -1,6 +1,6 @@
 package pico.erp.company;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,11 +35,11 @@ public class CompanyView {
 
   Auditor createdBy;
 
-  OffsetDateTime createdDate;
+  LocalDateTime createdDate;
 
   Auditor lastModifiedBy;
 
-  OffsetDateTime lastModifiedDate;
+  LocalDateTime lastModifiedDate;
 
   @Data
   @NoArgsConstructor
