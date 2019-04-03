@@ -2,25 +2,23 @@ package pico.erp.company.address;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.audit.AuditService;
 import pico.erp.company.CompanyId;
 import pico.erp.company.address.CompanyAddressExceptions.CompanyAddressAlreadyExistsException;
 import pico.erp.company.address.CompanyAddressExceptions.CompanyAddressNotFoundException;
 import pico.erp.company.address.CompanyAddressRequests.CreateRequest;
 import pico.erp.company.address.CompanyAddressRequests.DeleteRequest;
 import pico.erp.company.address.CompanyAddressRequests.UpdateRequest;
-import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Public
+@ComponentBean
 @Transactional
 @Validated
 public class CompanyAddressServiceLogic implements CompanyAddressService {
@@ -30,10 +28,6 @@ public class CompanyAddressServiceLogic implements CompanyAddressService {
 
   @Autowired
   private EventPublisher eventPublisher;
-
-  @Autowired
-  @Lazy
-  private AuditService auditService;
 
   @Autowired
   private CompanyAddressMapper mapper;
@@ -56,7 +50,6 @@ public class CompanyAddressServiceLogic implements CompanyAddressService {
       .orElseThrow(CompanyAddressNotFoundException::new);
     val response = companyAddress.apply(mapper.map(request));
     companyAddressRepository.deleteBy(request.getId());
-    auditService.delete(companyAddress);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -85,7 +78,6 @@ public class CompanyAddressServiceLogic implements CompanyAddressService {
       .orElseThrow(CompanyAddressNotFoundException::new);
     val response = companyAddress.apply(mapper.map(request));
     companyAddressRepository.update(companyAddress);
-    auditService.commit(companyAddress);
     eventPublisher.publishEvents(response.getEvents());
   }
 }

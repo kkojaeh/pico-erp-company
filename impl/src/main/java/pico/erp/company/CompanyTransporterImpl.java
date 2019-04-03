@@ -7,10 +7,11 @@ import com.coreoz.windmill.files.FileSource;
 import com.coreoz.windmill.imports.Parsers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.stream.Stream;
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -29,14 +30,13 @@ import pico.erp.company.contact.CompanyContact;
 import pico.erp.company.contact.CompanyContactId;
 import pico.erp.company.contact.CompanyContactMessages;
 import pico.erp.company.contact.CompanyContactRepository;
-import pico.erp.shared.Public;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.data.Contact;
 import pico.erp.shared.data.ContentInputStream;
 import pico.erp.shared.event.EventPublisher;
 
 @Component
-@Public
+@ComponentBean
 @Validated
 @Transactional
 public class CompanyTransporterImpl implements CompanyTransporter {
@@ -136,7 +136,7 @@ public class CompanyTransporterImpl implements CompanyTransporter {
     return ContentInputStream.builder()
       .name(
         String.format("companies-%s.%s",
-          DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(OffsetDateTime.now()),
+          DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(LocalDateTime.now()),
           ContentInputStream.XLSX_CONTENT_EXTENSION
         )
       )

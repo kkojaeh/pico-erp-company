@@ -1,5 +1,6 @@
 package pico.erp.company
 
+import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.Rollback
@@ -9,11 +10,13 @@ import pico.erp.company.contact.CompanyContactExceptions
 import pico.erp.company.contact.CompanyContactId
 import pico.erp.company.contact.CompanyContactRequests
 import pico.erp.company.contact.CompanyContactService
-import pico.erp.shared.IntegrationConfiguration
+import pico.erp.shared.ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier
+import pico.erp.shared.TestParentApplication
 import pico.erp.shared.data.Contact
 import spock.lang.Specification
 
-@SpringBootTest(classes = [IntegrationConfiguration])
+@SpringBootTest(classes = [CompanyApplication])
+@SpringBootTestComponent(parent = TestParentApplication, siblingsSupplier = ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier.class)
 @Transactional
 @Rollback
 @ActiveProfiles("test")

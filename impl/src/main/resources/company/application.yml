@@ -1,22 +1,25 @@
-banner:
-  location: classpath:company/banner.txt
-
 spring:
+  jmx:
+    default-domain: company
+  banner:
+    location: classpath:company/banner.txt
   application:
     name: pico-company
   session:
     store-type: NONE
   messages:
-    cache-seconds: 60
     basename: company-messages
     encoding: UTF-8
   datasource:
+    name: company-datasource
     url: ${COMPANY_DATASOURCE_URL:${DATASOURCE_URL:jdbc:p6spy:hsqldb:mem:company}}
     driver-class-name: ${COMPANY_DATASOURCE_DRIVER_CLASS_NAME:${DATASOURCE_DRIVER_CLASS_NAME:com.p6spy.engine.spy.P6SpyDriver}}
     username: ${COMPANY_DATASOURCE_USERNAME:${DATASOURCE_USERNAME:as}}
     password: ${COMPANY_DATASOURCE_PASSWORD:${DATASOURCE_PASSWORD:null}}
     hikari:
       maximum-pool-size: 4
+  flyway:
+    enabled: false
   jpa:
     database: HSQL
     hibernate:
@@ -82,9 +85,6 @@ logging:
   level:
     org:
       springframework: INFO
-
-flyway:
-  enabled: false
 
 owner:
   id: ${COMPANY_OWNER_ID:OWNER}
