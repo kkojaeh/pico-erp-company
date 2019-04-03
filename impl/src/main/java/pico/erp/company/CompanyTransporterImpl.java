@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.stream.Stream;
-import kkojaeh.spring.boot.component.Give;
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -36,7 +36,7 @@ import pico.erp.shared.data.ContentInputStream;
 import pico.erp.shared.event.EventPublisher;
 
 @Component
-@Give
+@ComponentBean
 @Validated
 @Transactional
 public class CompanyTransporterImpl implements CompanyTransporter {

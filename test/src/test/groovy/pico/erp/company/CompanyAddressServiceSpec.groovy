@@ -3,7 +3,6 @@ package pico.erp.company
 import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
@@ -11,13 +10,13 @@ import pico.erp.company.address.CompanyAddressExceptions
 import pico.erp.company.address.CompanyAddressId
 import pico.erp.company.address.CompanyAddressRequests
 import pico.erp.company.address.CompanyAddressService
+import pico.erp.shared.ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier
 import pico.erp.shared.TestParentApplication
 import pico.erp.shared.data.Address
 import spock.lang.Specification
 
 @SpringBootTest(classes = [CompanyApplication])
-@SpringBootTestComponent(parent = TestParentApplication, siblings = [])
-@ComponentScan(useDefaultFilters = false)
+@SpringBootTestComponent(parent = TestParentApplication, siblingsSupplier = ComponentDefinitionServiceLoaderTestComponentSiblingsSupplier.class)
 @Transactional
 @Rollback
 @ActiveProfiles("test")
