@@ -7,7 +7,7 @@ import com.coreoz.windmill.files.FileSource;
 import com.coreoz.windmill.imports.Parsers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -136,7 +136,7 @@ public class CompanyTransporterImpl implements CompanyTransporter {
     return ContentInputStream.builder()
       .name(
         String.format("companies-%s.%s",
-          DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(LocalDateTime.now()),
+          DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(OffsetDateTime.now()),
           ContentInputStream.XLSX_CONTENT_EXTENSION
         )
       )
